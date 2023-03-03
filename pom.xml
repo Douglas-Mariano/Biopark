@@ -86,6 +86,12 @@
 		<version>9.4.1212</version>
 	</dependency>
 	
+	<dependency>
+		<groupId>org.projectlombok</groupId>
+		<artifactId>lombok</artifactId>
+		<optional>true</optional>
+	</dependency>
+	
   </dependencies>
 
   <build>
@@ -95,6 +101,14 @@
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
           <version>2.1.1.RELEASE</version>
+          <configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+			</configuration>
         </plugin>
       </plugins>
     </pluginManagement>
