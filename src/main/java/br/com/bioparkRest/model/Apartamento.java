@@ -29,7 +29,7 @@ public class Apartamento implements Serializable{
     private Long id;
 	
 	@NotNull(message = "O número é obrigatório")
-	private int numeroAp;
+	private String numeroAp;
 	
 	@NotNull(message = "Andar obrigatório")
 	private int andarAp;
@@ -38,7 +38,7 @@ public class Apartamento implements Serializable{
     private BigDecimal valorAluguel;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "edificio_id")
+    @JoinColumn(name = "edificio_id", referencedColumnName = "id")
     private Edificio edificio;
 
     @OneToOne(mappedBy = "apartamento")

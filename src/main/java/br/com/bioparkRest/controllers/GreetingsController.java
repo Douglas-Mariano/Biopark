@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.bioparkRest.model.Apartamento;
 import br.com.bioparkRest.model.Edificio;
 import br.com.bioparkRest.repository.ApartamentoRepository;
 import br.com.bioparkRest.repository.EdificioRepository;
@@ -43,6 +44,11 @@ public class GreetingsController {
     	edificio.setNome(name);
 
 		edificioRepository.save(edificio);
+		
+		Apartamento apartamento = new Apartamento();
+		apartamento.setNumeroAp(name);
+		
+		apartamentoRepository.save(apartamento);
     	
         return "Hello " + name + "!";
     }
@@ -52,18 +58,7 @@ public class GreetingsController {
     
     @Autowired
 	private EdificioRepository edificioRepository;
-    
-//Método para listar os edifícios
-    
-    @GetMapping(value = "listaedificios")
-    @ResponseBody
-    public ResponseEntity<List<Edificio>> listaEdificio() {
-            
-    	List<Edificio> edificio = edificioRepository.findAll();
-
-    	return new ResponseEntity<List<Edificio>>(edificio, HttpStatus.OK);
-        }
-    
+        
   //Método para salvar os edifícios
     
     @PostMapping(value = "salvaredificios")
@@ -75,6 +70,17 @@ public class GreetingsController {
     	return new ResponseEntity<Edificio>(edificiosalvo, HttpStatus.CREATED);
         }
     
+//Método para listar os edifícios
+    
+    @GetMapping(value = "listaedificios")
+    @ResponseBody
+    public ResponseEntity<List<Edificio>> listaEdificio() {
+            
+    	List<Edificio> edificio = edificioRepository.findAll();
+
+    	return new ResponseEntity<List<Edificio>>(edificio, HttpStatus.OK);
+        }
+   
 //Método para atualizar os edifícios
     
     @PutMapping(value = "atualizaredificios")
@@ -128,9 +134,81 @@ public class GreetingsController {
     @Autowired
 	private ApartamentoRepository apartamentoRepository;
     
+//Método para listar os Apartamentos
+    
+    @GetMapping(value = "listaAp")
+    @ResponseBody
+    public ResponseEntity<List<Apartamento>> listaAp() {
+            
+    	List<Apartamento> apartamento = apartamentoRepository.findAll();
+
+    	return new ResponseEntity<List<Apartamento>>(apartamento, HttpStatus.OK);
+        }
+    
+//Método para salvar os apartamentos
+    
+    @PostMapping(value = "salvarAps")
+    @ResponseBody
+    public ResponseEntity<Apartamento> salvarAps(@RequestBody Apartamento apartamento) {
+            
+    	Apartamento apsalvo = apartamentoRepository.save(apartamento);
+
+    	return new ResponseEntity<Apartamento>(apsalvo, HttpStatus.CREATED);
+        }
+
+//Método para atualizar os Apartamentos
+    
+    @PutMapping(value = "atualizarAps")
+    @ResponseBody
+    public ResponseEntity<?> atualizarAps(@RequestBody Apartamento apartamento) {
+    	
+    	if(apartamento.getId() == null) {
+    		return new ResponseEntity<String>("Código não informado", HttpStatus.OK);
+    	}
+            
+    	Apartamento apartamentoatualizado = apartamentoRepository.saveAndFlush(apartamento);
+
+    	return new ResponseEntity<Apartamento>(apartamentoatualizado, HttpStatus.OK);
+        }
+    
+//Método para deletar os Apartamentos
+    
+    @DeleteMapping(value = "deletarAp")
+    @ResponseBody
+    public ResponseEntity<String> deletarAp(@RequestParam Long idApartamento) {
+            
+    	apartamentoRepository.deleteById(idApartamento);
+
+    	return new ResponseEntity<String>("Apartamento deletado", HttpStatus.OK);
+        }
+    
+//Método para buscar Apartamento por id
+    
+    @GetMapping(value = "buscarApId")
+    @ResponseBody
+    public ResponseEntity<Apartamento> buscarApId(@RequestParam(name = "idApartamento") Long idApartamento) {
+            
+    	Apartamento apartamento = apartamentoRepository.findById(idApartamento).get();
+
+    	return new ResponseEntity<Apartamento>(apartamento, HttpStatus.OK);
+        }
+    
+//Método para buscar apartamento pelo Nº Ap
+    
+    @GetMapping(value = "buscarApPorNumAp")
+    @ResponseBody
+    public ResponseEntity<List<Apartamento>> buscarApPorNumAp(@RequestParam(name = "nome") String numAp) {
+            
+    	List<Apartamento> apartamento = apartamentoRepository.buscarApPorNumAp(numAp.trim().toUpperCase());
+
+    	return new ResponseEntity<List<Apartamento>>(apartamento, HttpStatus.OK);
+        }
+    
     //Controlador Locatario
     
     @Autowired
 	private LocatarioRepository locatarioRepository;
+    
+    
     
 }
