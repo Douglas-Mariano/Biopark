@@ -26,13 +26,13 @@ public class Edificio implements Serializable{
 	 @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_edificio")
 	 private Long id;
 
-	 @NotBlank(message = "O nome é obrigatório")
+	 //@NotBlank(message = "O nome é obrigatório")
 	 private String nome;
 	 
-	 @NotBlank (message = "O endereço é obrigatório")
+	 //@NotBlank (message = "O endereço é obrigatório")
 	 private String endereco;
 	 
-	 @NotBlank(message = "O proprietário é obrigatório")
+	// @NotBlank(message = "O proprietário é obrigatório")
 	 private String proprietario;
 
 	 @OneToMany(mappedBy = "edificio", cascade = CascadeType.ALL, orphanRemoval = true)
