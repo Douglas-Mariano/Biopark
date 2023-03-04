@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.bioparkRest.model.Apartamento;
 import br.com.bioparkRest.model.Edificio;
+import br.com.bioparkRest.model.Locatario;
 import br.com.bioparkRest.repository.ApartamentoRepository;
 import br.com.bioparkRest.repository.EdificioRepository;
 import br.com.bioparkRest.repository.LocatarioRepository;
@@ -49,6 +50,11 @@ public class GreetingsController {
 		apartamento.setNumeroAp(name);
 		
 		apartamentoRepository.save(apartamento);
+		
+		Locatario locatario = new Locatario();
+		locatario.setNome(name);
+		
+		locatarioRepository.save(locatario);
     	
         return "Hello " + name + "!";
     }
@@ -209,6 +215,73 @@ public class GreetingsController {
     @Autowired
 	private LocatarioRepository locatarioRepository;
     
+//Método para salvar os Locatarios
     
+    @PostMapping(value = "salvarlocatario")
+    @ResponseBody
+    public ResponseEntity<Locatario> salvarlocatario(@RequestBody Locatario locatario) {
+            
+    	Locatario locatariosalvo = locatarioRepository.save(locatario);
+
+    	return new ResponseEntity<Locatario>(locatariosalvo, HttpStatus.CREATED);
+        }
     
+//Método para listar os Locatarios
+    
+    @GetMapping(value = "listlocatario")
+    @ResponseBody
+    public ResponseEntity<List<Locatario>> listlocatario() {
+            
+    	List<Locatario> locatario = locatarioRepository.findAll();
+
+    	return new ResponseEntity<List<Locatario>>(locatario, HttpStatus.OK);
+        }
+   
+//Método para atualizar os Locatarios
+    
+    @PutMapping(value = "atualizarlocatario")
+    @ResponseBody
+    public ResponseEntity<?> atualizarlocatario(@RequestBody Locatario locatario) {
+    	
+    	if(locatario.getId() == null) {
+    		return new ResponseEntity<String>("Código não informado", HttpStatus.OK);
+    	}
+            
+    	Locatario locatarioatualizado = locatarioRepository.saveAndFlush(locatario);
+
+    	return new ResponseEntity<Locatario>(locatarioatualizado, HttpStatus.OK);
+        }
+    
+//Método para deletar os Locatarios
+    
+    @DeleteMapping(value = "deletarlocatario")
+    @ResponseBody
+    public ResponseEntity<String> deletarlocatario(@RequestParam Long idLocatario) {
+            
+    	locatarioRepository.deleteById(idLocatario);
+
+    	return new ResponseEntity<String>("Locatario deletado", HttpStatus.OK);
+        }
+    
+//Método para buscar Locatario por id
+    
+    @GetMapping(value = "buscarlocatarioid")
+    @ResponseBody
+    public ResponseEntity<Locatario> buscarlocatarioid(@RequestParam(name = "idLocatario") Long idLocatario) {
+            
+    	Locatario locatario = locatarioRepository.findById(idLocatario).get();
+
+    	return new ResponseEntity<Locatario>(locatario, HttpStatus.OK);
+        }
+    
+//Método para buscar Locatario por nome
+    
+    @GetMapping(value = "buscarlocatarionome")
+    @ResponseBody
+    public ResponseEntity<List<Locatario>> buscarlocatarionome(@RequestParam(name = "nome") String nomeLocatario) {
+            
+    	List<Locatario> locatario = locatarioRepository.buscarLocatarioPorNome(nomeLocatario.trim().toUpperCase());
+
+    	return new ResponseEntity<List<Locatario>>(locatario, HttpStatus.OK);
+        }    
 }
