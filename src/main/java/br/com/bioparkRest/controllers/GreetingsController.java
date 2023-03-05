@@ -25,10 +25,6 @@ import br.com.bioparkRest.repository.ApartamentoRepository;
 import br.com.bioparkRest.repository.EdificioRepository;
 import br.com.bioparkRest.repository.LocatarioRepository;
 
-/**
- *
- * A sample greetings controller to return greeting text
- */
 @RestController
 public class GreetingsController {	
 	
