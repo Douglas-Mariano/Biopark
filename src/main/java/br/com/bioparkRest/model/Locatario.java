@@ -26,13 +26,13 @@ public class Locatario implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_locatario")
     private Long id;
  
-    @NotBlank(message = "O nome é obrigatório")
+   // @NotBlank(message = "O nome é obrigatório")
     private String nome;
  
-    @NotBlank(message = "O CPF é obrigatório")
+   // @NotBlank(message = "O CPF é obrigatório")
     private int cpf;
     
-    @NotBlank(message = "O telefone é obrigatório")
+  //  @NotBlank(message = "O telefone é obrigatório")
     private int telefone;
     
     @ManyToOne(fetch = FetchType.LAZY)

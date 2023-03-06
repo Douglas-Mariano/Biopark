@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -35,6 +37,7 @@ public class Edificio implements Serializable{
 	 @NotBlank(message = "O proprietário é obrigatório")
 	 private String proprietario;
 
+	 //@JsonIgnore
 	 @OneToMany(mappedBy = "edificio", cascade = CascadeType.ALL, orphanRemoval = true)
 	 private List<Apartamento> apartamentos = new ArrayList<>();
 	

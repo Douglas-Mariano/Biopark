@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import br.com.bioparkRest.model.Apartamento;
 import br.com.bioparkRest.model.Edificio;
@@ -28,11 +29,6 @@ import br.com.bioparkRest.repository.LocatarioRepository;
 @RestController
 public class GreetingsController {	
 	
-    /**
-     *
-     * @param name the name to greet
-     * @return greeting text
-     */
     @RequestMapping(value = "/{name}", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
     public String greetingText(@PathVariable String name) {
@@ -52,8 +48,14 @@ public class GreetingsController {
 		
 		locatarioRepository.save(locatario);
     	
-        return "Hello " + name + "!";
+        return name + "Não encontrado!";
     }
+    
+    @RequestMapping("/")
+    public ModelAndView index(){
+    	return new ModelAndView("index");
+    }
+    
     
 
     //Controlador Edifício
