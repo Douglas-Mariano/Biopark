@@ -12,14 +12,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.validation.constraints.NotNull;
-
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 @Entity
 @SequenceGenerator(name = "seq_apartamento", sequenceName = "seq_apartamento", allocationSize = 1, initialValue = 1)
-@Data
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Apartamento implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -28,13 +32,10 @@ public class Apartamento implements Serializable{
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_apartamento")
     private Long id;
 	
-	@NotNull(message = "O número é obrigatório")
 	private String numeroAp;
 	
-	@NotNull(message = "Andar obrigatório")
 	private int andarAp;
 
-    @NotNull(message = "O valor do aluguel é obrigatório")
     private BigDecimal valorAluguel;
 
     @ManyToOne(fetch = FetchType.LAZY)
