@@ -18,12 +18,7 @@
 
 	<h1>Biopark</h1>
 
-	<a class="btn btn-primary" href="#" role="button">Edifício</a>
-	<a class="btn btn-primary" href="#" role="button">Apartamento</a>
-	<a class="btn btn-primary" href="#" role="button">Locatário</a>
-
-
-	<h1>Edifício</h1>
+	<h2>Edifício</h2>
 
 	<form action="" id="formCadastroEdificio">
 
@@ -101,6 +96,166 @@
 	</div>
 
 
+	<h2>Apartamento</h2>
+
+	<form action="" id="formCadastroEdificio">
+
+		<div class="mb-3">
+			<label for="id" class="form-label">ID</label> <input type="text"
+				class="form-control" id="id" readonly="readonly">
+		</div>
+
+		<div class="mb-3">
+			<label for="" class="form-label">Nº Apartamento</label> <input type="text"
+				class="form-control" id="numeroAp" placeholder="numeroAp"
+				required="required">
+		</div>
+
+		<div class="mb-3">
+			<label for="" class="form-label">Andar</label> <input type="text"
+				class="form-control" id="andarAp" placeholder="andarAp"
+				required="required">
+		</div>
+
+		<div class="mb-3">
+			<label for="" class="form-label">Valor do Aluguel</label> <input
+				type="text" class="form-control" id="valorAluguel"
+				placeholder="valorAluguel" required="required">
+		</div>
+
+	</form>
+
+	<button type="button" class="btn btn-primary"
+		onclick="SalvarEdificio()">Salvar</button>
+	<button type="button" class="btn btn-primary"
+		onclick="document.getElementById('formCadastroEdificio').reset();">Limpar
+		o Formulário</button>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+		data-bs-target="#modalPesquisarEdificio">Pesquisar Apartamentos</button>
+	<button type="button" class="btn btn-danger" onclick="DeletarDaTela()">Deletar</button>
+
+	<div class="modal fade" id="modalPesquisarEdificio" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de
+						Apartamentos</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="mb-3">
+							<label for="nameBusca" class="col-form-label">Informe o
+								Nome:</label> <input type="text" class="form-control" id="nameBusca">
+						</div>
+						<button type="button" class="btn btn-success"
+							onclick="pesquisarApartamento()">Buscar</button>
+					</form>
+					<div style="height: 300px; overflow: scroll;">
+						<table class="table" id="tabelaResultados">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Nº Apartamento</th>
+									<th scope="col">Editar</th>
+									<th scope="col">Deletar</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+	<h2>Locatario</h2>
+
+	<form action="" id="formCadastroEdificio">
+
+		<div class="mb-3">
+			<label for="id" class="form-label">ID</label> <input type="text"
+				class="form-control" id="id" readonly="readonly">
+		</div>
+
+		<div class="mb-3">
+			<label for="" class="form-label">Nome</label> <input type="text"
+				class="form-control" id="nome" placeholder="Nome"
+				required="required">
+		</div>
+
+		<div class="mb-3">
+			<label for="" class="form-label">cpf</label> <input type="text"
+				class="form-control" id="cpf" placeholder="cpf"
+				required="required">
+		</div>
+
+		<div class="mb-3">
+			<label for="" class="form-label">telefone</label> <input
+				type="text" class="form-control" id="telefone"
+				placeholder="telefone" required="required">
+		</div>
+
+	</form>
+
+	<button type="button" class="btn btn-primary"
+		onclick="SalvarLocatario()">Salvar</button>
+	<button type="button" class="btn btn-primary"
+		onclick="document.getElementById('formCadastroLocatario').reset();">Limpar
+		o Formulário</button>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal"
+		data-bs-target="#modalPesquisarLocatario">Pesquisar Locatario</button>
+	<button type="button" class="btn btn-danger" onclick="DeletarDaTela()">Deletar</button>
+
+	<div class="modal fade" id="modalPesquisarLocatario" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Pesquisa de Locatario</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="mb-3">
+							<label for="nameBusca" class="col-form-label">Informe o
+								Nome:</label> <input type="text" class="form-control" id="nameBusca">
+						</div>
+						<button type="button" class="btn btn-success"
+							onclick="pesquisarLocatario()">Buscar</button>
+					</form>
+					<div style="height: 300px; overflow: scroll;">
+						<table class="table" id="tabelaResultados">
+							<thead>
+								<tr>
+									<th scope="col">ID</th>
+									<th scope="col">Nome</th>
+									<th scope="col">Editar</th>
+									<th scope="col">Deletar</th>
+								</tr>
+							</thead>
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<script src="https://code.jquery.com/jquery-3.6.3.min.js"
 		integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
@@ -111,6 +266,10 @@
 		crossorigin="anonymous"></script>
 
 	<script type="text/javascript">
+	
+	
+	// Função Edificio
+	
 		function DeletarDaTela() {
 
 			var id = $('#id').val();
@@ -193,7 +352,7 @@
 					$("#endereco").val();
 					$("#proprietario").val();
 
-					$('#modalPesquisarUser').modal('hide');
+					$('#modalPesquisarEdificio').modal('hide');
 
 				}
 			}).fail(function(xhr, status, errorThrown) {
@@ -236,6 +395,290 @@
 					nome : nome,
 					endereco : endereco,
 					proprietario : proprietario
+				}),
+				contentType : "application/json; charset=utf-8",
+				success : function(response) {
+					$("#id").val(response.id);
+					alert("Gravou com Sucesso!")
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao Salvar: " + xhr.reponseText);
+			});
+
+		}
+		
+		
+		//Função Apartamento
+		
+		function DeletarDaTela() {
+
+			var id = $('#id').val();
+
+			if (id != null && id.trim() != '') {
+				deleteApartamento(id);
+				document.getElementById('formCadastroApartamento').reset();
+			}
+
+		}
+
+		function deleteApartamento(id) {
+
+			if (confirm('Deseja realmente deletar?')) {
+
+				$.ajax({
+					method : "DELETE",
+					url : "deletarAp",
+					data : "idApartamento=" + id,
+					success : function(response) {
+
+						$('#' + id).remove();
+
+						alert(response);
+
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Erro ao Deletar Apartamento: " + xhr.reponseText);
+				});
+
+			}
+		}
+
+		function pesquisarApartamento() {
+
+			var nome = $('#nameBusca').val();
+
+			if (nome != null && nome.trim() != '') {
+
+				$
+						.ajax(
+								{
+									method : "GET",
+									url : "buscarApPorNumAp",
+									data : "numeroAp=" + numeroAp,
+									success : function(response) {
+										$('#tabelaResultados > tbody > tr')
+												.remove();
+
+										for (var i = 0; i < response.length; i++) {
+											$('#tabelaResultados > tbody')
+													.append(
+															'<tr id="'+response[i].id+'"><td>'
+																	+ response[i].id
+																	+ '</td><td>'
+																	+ response[i].numeroAp
+																	+ '</td><td><button type="button" onclick="colocarEmEdicao('
+																	+ response[i].id
+																	+ ')" class="btn btn-warning">Verificar</button></td><td><button type="button" class="btn btn-danger" onclick="deleteApartamento('
+																	+ response[i].id
+																	+ ')">Deletar</button></td></tr>');
+										}
+									}
+								}).fail(function(xhr, status, errorThrown) {
+							alert("Erro ao Buscar: " + xhr.reponseText);
+						});
+
+			}
+
+		}
+
+		function colocarEmEdicao(id) {
+
+			$.ajax({
+				method : "GET",
+				url : "buscarApId",
+				data : "idApartamento=" + id,
+				success : function(response) {
+
+					$("#id").val();
+					$("#numeroAp").val();
+					$("#andarAp").val();
+					$("#valorAluguel").val();
+
+					$('#modalPesquisarApartamento').modal('hide');
+
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao Buscar Apartamento por ID: " + xhr.reponseText);
+			});
+
+		}
+
+		function SalvarApartamento() {
+
+			var id = $("#id").val();
+			var numeroAp = $("#numeroAp").val();
+			var andarAp = $("#andarAp").val();
+			var valorAluguel = $("#valorAluguel").val();
+
+			if (numeroAp == null || numeroAp != null && numeroAp.trim() == '') {
+				$("#numeroAp").focus();
+				alert("Informe o nº do apartamento:");
+				return;
+			}
+
+			if (andarAp == null || andarAp != null && andarAp.trim() == '') {
+				$("#andarAp").focus();
+				alert("Informe o Andar:");
+				return;
+			}
+
+			if (valorAluguel == null || valorAluguel != null
+					&& valorAluguel.trim() == '') {
+				$("#valorAluguel").focus();
+				alert("Informe o valor do aluguel:");
+				return;
+			}
+
+			$.ajax({
+				method : "POST",
+				url : "salvarAps",
+				data : JSON.stringify({
+					id : id,
+					numeroAp : numeroAp,
+					andarAp : andarAp,
+					valorAluguel : valorAluguel
+				}),
+				contentType : "application/json; charset=utf-8",
+				success : function(response) {
+					$("#id").val(response.id);
+					alert("Gravou com Sucesso!")
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao Salvar: " + xhr.reponseText);
+			});
+
+		}
+		
+		
+		//Função Locatario
+		
+		function DeletarDaTela() {
+
+			var id = $('#id').val();
+
+			if (id != null && id.trim() != '') {
+				deleteLocatario(id);
+				document.getElementById('formCadastroLocatario').reset();
+			}
+
+		}
+
+		function deleteLocatario(id) {
+
+			if (confirm('Deseja realmente deletar?')) {
+
+				$.ajax({
+					method : "DELETE",
+					url : "deletarlocatario",
+					data : "idLocatario=" + id,
+					success : function(response) {
+
+						$('#' + id).remove();
+
+						alert(response);
+
+					}
+				}).fail(function(xhr, status, errorThrown) {
+					alert("Erro ao Deletar Locatario: " + xhr.reponseText);
+				});
+
+			}
+		}
+
+		function pesquisarLocatario() {
+
+			var nome = $('#nameBusca').val();
+
+			if (nome != null && nome.trim() != '') {
+
+				$
+						.ajax(
+								{
+									method : "GET",
+									url : "buscarlocatarionome",
+									data : "nome=" + nome,
+									success : function(response) {
+										$('#tabelaResultados > tbody > tr')
+												.remove();
+
+										for (var i = 0; i < response.length; i++) {
+											$('#tabelaResultados > tbody')
+													.append(
+															'<tr id="'+response[i].id+'"><td>'
+																	+ response[i].id
+																	+ '</td><td>'
+																	+ response[i].nome
+																	+ '</td><td><button type="button" onclick="colocarEmEdicao('
+																	+ response[i].id
+																	+ ')" class="btn btn-warning">Verificar</button></td><td><button type="button" class="btn btn-danger" onclick="deleteLocatario('
+																	+ response[i].id
+																	+ ')">Deletar</button></td></tr>');
+										}
+									}
+								}).fail(function(xhr, status, errorThrown) {
+							alert("Erro ao Buscar: " + xhr.reponseText);
+						});
+
+			}
+
+		}
+
+		function colocarEmEdicao(id) {
+
+			$.ajax({
+				method : "GET",
+				url : "buscarlocatarioid",
+				data : "idEdificio=" + id,
+				success : function(response) {
+
+					$("#id").val();
+					$("#nome").val();
+					$("#cpf").val();
+					$("#telefone").val();
+
+					$('#modalPesquisarLocatario').modal('hide');
+
+				}
+			}).fail(function(xhr, status, errorThrown) {
+				alert("Erro ao Buscar Locatario por ID: " + xhr.reponseText);
+			});
+
+		}
+
+		function SalvarLocatario() {
+
+			var id = $("#id").val();
+			var nome = $("#nome").val();
+			var cpf = $("#cpf").val();
+			var telefone = $("#telefone").val();
+
+			if (nome == null || nome != null && nome.trim() == '') {
+				$("#nome").focus();
+				alert("Informe o nome:");
+				return;
+			}
+
+			if (cpf == null || cpf != null && cpf.trim() == '') {
+				$("#cpf").focus();
+				alert("Informe o cpf:");
+				return;
+			}
+
+			if (telefone == null || telefone != null
+					&& telefone.trim() == '') {
+				$("#telefone").focus();
+				alert("Informe o telefone:");
+				return;
+			}
+
+			$.ajax({
+				method : "POST",
+				url : "salvarlocatario",
+				data : JSON.stringify({
+					id : id,
+					nome : nome,
+					cpf : cpf,
+					telefone : telefone
 				}),
 				contentType : "application/json; charset=utf-8",
 				success : function(response) {
